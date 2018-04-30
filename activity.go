@@ -1,6 +1,7 @@
 package posttweet
 
 import (
+	s "strings"
 	"github.com/DipeshTest/allstarsshared/Twitter"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
