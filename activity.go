@@ -1,4 +1,4 @@
-package posttweet
+package twitterpost
 
 import (
 	s "strings"
@@ -13,7 +13,7 @@ type MyActivity struct {
 	metadata *activity.Metadata
 }
 
-var log = logger.GetLogger("activity-posttweet")
+var log = logger.GetLogger("activity-twitterpost")
 
 // NewActivity creates a new activity
 func NewActivity(metadata *activity.Metadata) activity.Activity {
