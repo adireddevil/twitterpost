@@ -2,6 +2,7 @@ package posttweet
 
 import (
 	s "strings"
+
 	"github.com/DipeshTest/allstarsshared/Twitter"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
@@ -12,7 +13,7 @@ type MyActivity struct {
 	metadata *activity.Metadata
 }
 
-var log = logger.GetLogger("activity-gdrivecreate")
+var log = logger.GetLogger("activity-posttweet")
 
 // NewActivity creates a new activity
 func NewActivity(metadata *activity.Metadata) activity.Activity {
@@ -38,14 +39,11 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 		context.SetOutput("statusCode", "101")
 
 		context.SetOutput("message", "Consumer Key field is blank")
-		//context.SetOutput("failedNumbers", to)
-
-		//respond with this
 	} else if len(consumerSecret) == 0 {
 
 		context.SetOutput("statusCode", "102")
 
-		context.SetOutput("message", "Consumer Key field is blank")
+		context.SetOutput("message", "Consumer Secret field is blank")
 
 	} else if len(accessToken) == 0 {
 
@@ -66,11 +64,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 		context.SetOutput("message", "Tweet cannot be blank")
 
 	} else {
-
-
-		//code, msg := GDrive.CreateFile(accessToken, fileFullPath, emailAddr, role, sendNotification, timeout)
-
-		code, msg := twitter.PostTweet(consumerKey, consumerSecret, accessToken, accessTokenSecret, tweet)
+		code, msg := Twitter.PostTweet(consumerKey, consumerSecret, accessToken, accessTokenSecret, tweet)
 		context.SetOutput("statusCode", code)
 
 		context.SetOutput("message", msg)
